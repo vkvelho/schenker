@@ -64,16 +64,17 @@ class Schenker
 
 				# Open		30		Opening hours
 				open = l.slice(pos, 30).rstrip
-				# pos += 30
+				pos += 30
 
 				# Contacts	30		N/A
-				# pos += 30
+				pos += 30
 
 				# Filler	1		Blank
-				# pos += 1
+				pos += 1
 
 				# Co.code	2		’FI’
-				# pos += 2
+				country = l.slice(pos, 2)
+				pos += 2
 
 				delivery_points << {
 					name: name,
@@ -82,12 +83,12 @@ class Schenker
 					postcode: postcode,
 					city: city,
 					phone: phone,
-					open: open
+					open: open,
+					country: country
 				}						
 		end
 
 		delivery_points
-
 	end
 
 	def self.get_raw_delivery_point_lines(delivery_point_ids)
